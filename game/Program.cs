@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace unum
+﻿namespace unum
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Game game = new Game();
         }
     }
 }
