@@ -7,7 +7,7 @@ namespace unum
     {
         public Player()
         {
-            EntitySprite.Texture = new Texture(Res.PlayerTexture);
+            EntitySprite.Texture = new Texture(Resources.PlayerTexture);
         }
 
         public override void Start()
