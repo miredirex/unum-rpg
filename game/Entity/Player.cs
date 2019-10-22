@@ -1,5 +1,4 @@
-﻿using System;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
 
 namespace unum
@@ -16,10 +15,10 @@ namespace unum
             
         }
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
             // It's moving!
-            Position += new Vector2f(1f, 1f);
+            Position += new Vector2f(100f * deltaTime, 100f * deltaTime);
         }
     }
 }

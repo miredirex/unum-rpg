@@ -14,7 +14,7 @@ namespace unum
             EntitySprite.Draw(target, states);
         }
 
-        public virtual void Update() { }
+        public virtual void Update(float deltaTime) { }
 
         public virtual void Start() { }
     }

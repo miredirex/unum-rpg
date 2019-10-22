@@ -15,11 +15,18 @@ namespace unum
             return this; //to invoke many AddObject at once
         }
 
-        public void Update(RenderTarget target, RenderStates states)
+        public void UpdateObjects(float deltaTime)
         {
             foreach (var obj in WorldObjects)
             {
-                obj.Update();
+                obj.Update(deltaTime);
+            }
+        }
+
+        public void RenderObjects(RenderTarget target, RenderStates states)
+        {
+            foreach (var obj in WorldObjects)
+            {
                 obj.Draw(target, states);
             }
         }
