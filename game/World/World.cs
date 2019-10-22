@@ -10,6 +10,7 @@ namespace unum
         public World AddObject(GameObject obj)
         {
             WorldObjects.Add(obj);
+            obj.Start();
 
             return this; //to invoke many AddObject at once
         }

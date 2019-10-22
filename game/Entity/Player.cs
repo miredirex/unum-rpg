@@ -1,4 +1,6 @@
-﻿using SFML.Graphics;
+﻿using System;
+using SFML.Graphics;
+using SFML.System;
 
 namespace unum
 {
@@ -9,9 +11,15 @@ namespace unum
             EntitySprite.Texture = new Texture(Res.PlayerTexture);
         }
 
+        public override void Start()
+        {
+            
+        }
+
         public override void Update()
         {
-            //todo: add basic movement
+            // It's moving!
+            Position += new Vector2f(1f, 1f);
         }
     }
 }

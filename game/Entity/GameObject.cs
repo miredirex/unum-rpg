@@ -10,6 +10,7 @@ namespace unum
 
         public void Draw(RenderTarget target, RenderStates states)
         {
+            states.Transform = this.Transform;
             EntitySprite.Draw(target, states);
         }
 

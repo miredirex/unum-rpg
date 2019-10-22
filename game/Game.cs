@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using System;
+using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
@@ -9,7 +10,7 @@ namespace unum
         /* Window settings */
         private const string GameTitle = "Unum RPG";
         private const uint TargetFps = 60;
-        private static readonly Vector2u WindowSize = new Vector2u(800, 600);
+        private static readonly Vector2u WindowSize = new Vector2u(640, 480);
         private static readonly RenderWindow GameWindow = new RenderWindow(VideoMode.DesktopMode, GameTitle);
         private readonly View CameraView = new View(new FloatRect(0, 0, WindowSize.X, WindowSize.Y));
 
@@ -19,21 +20,40 @@ namespace unum
         public Game()
         {
             SetWindowSettings(GameWindow);
-            while (GameWindow.IsOpen) GameLoop();
+            BindWindowCallbacks(GameWindow);
+            GameLoop();
         }
-
-        //todo: finish drawing and handling input
+        
         private void GameLoop()
         {
-            GameWindow.Clear();
-            ProcessEvents();
-            GameWorld.Update(GameWindow, RenderStates.Default);
-            GameWindow.Display();
+            //todo: calculate delta time
+            while (GameWindow.IsOpen)
+            {
+                ProcessEvents();
+                Update();
+                Render();
+            }
         }
 
         private void ProcessEvents()
         {
-            GameWindow.KeyPressed += (sender, args) => { };
+            GameWindow.DispatchEvents();
+        }
+
+        private void Update()
+        {
+            GameWindow.Clear();
+            GameWorld.Update(GameWindow, RenderStates.Default);
+        }
+
+        private void Render()
+        {
+            GameWindow.Display();
+        }
+
+        private void HandleInput(object sender, KeyEventArgs e)
+        {
+            Console.WriteLine(e.Code);
         }
 
         private void SetWindowSettings(RenderWindow window)
@@ -42,6 +62,12 @@ namespace unum
             window.SetFramerateLimit(TargetFps);
             window.SetVerticalSyncEnabled(true);
             window.SetView(CameraView);
+        }
+
+        private void BindWindowCallbacks(RenderWindow window)
+        {
+            window.KeyPressed += HandleInput;
+            window.Closed += (sender, args) => { ((Window)sender).Close(); };
         }
     }
 }
