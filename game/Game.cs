@@ -13,30 +13,27 @@ namespace unum
         private static readonly RenderWindow GameWindow = new RenderWindow(VideoMode.DesktopMode, GameTitle);
         private readonly View CameraView = new View(new FloatRect(0, 0, WindowSize.X, WindowSize.Y));
 
-        private Player player = new Player();
-        
+        private readonly World GameWorld = new World()
+            .AddObject(new Player());
+
         public Game()
         {
             SetWindowSettings(GameWindow);
-
-            while (GameWindow.IsOpen)
-            {
-                GameLoop();
-            }
+            while (GameWindow.IsOpen) GameLoop();
         }
-        
+
         //todo: finish drawing and handling input
         private void GameLoop()
         {
-            ProcessEvents();
             GameWindow.Clear();
-            World.Draw(GameWindow, RenderStates.Default);
+            ProcessEvents();
+            GameWorld.Update(GameWindow, RenderStates.Default);
             GameWindow.Display();
         }
 
         private void ProcessEvents()
         {
-            
+            GameWindow.KeyPressed += (sender, args) => { };
         }
 
         private void SetWindowSettings(RenderWindow window)

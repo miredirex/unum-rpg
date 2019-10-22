@@ -3,19 +3,22 @@ using SFML.Graphics;
 
 namespace unum
 {
-    public static class World
+    public class World
     {
-        private static List<GameObject> GameObjects { get; } = new List<GameObject>();
+        private List<GameObject> WorldObjects { get; } = new List<GameObject>();
 
-        public static void AddObject(GameObject obj)
+        public World AddObject(GameObject obj)
         {
-            GameObjects.Add(obj);
+            WorldObjects.Add(obj);
+
+            return this; //to invoke many AddObject at once
         }
 
-        public static void Draw(RenderTarget target, RenderStates states)
+        public void Update(RenderTarget target, RenderStates states)
         {
-            foreach (var obj in GameObjects)
+            foreach (var obj in WorldObjects)
             {
+                obj.Update();
                 obj.Draw(target, states);
             }
         }

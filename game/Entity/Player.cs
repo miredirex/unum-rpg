@@ -6,8 +6,12 @@ namespace unum
     {
         public Player()
         {
-            //todo: use assets (or static class)
-            EntitySprite.Texture = new Texture("herotest.png");
+            EntitySprite.Texture = new Texture(Res.PlayerTexture);
+        }
+
+        public override void Update()
+        {
+            //todo: add basic movement
         }
     }
 }

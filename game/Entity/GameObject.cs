@@ -5,16 +5,16 @@ namespace unum
 {
     public class GameObject : Transformable, Drawable
     {
-        protected Sprite EntitySprite = new Sprite { Scale = new Vector2f(2f, 2f) };
-
-        protected GameObject()
-        {
-            World.AddObject(this);
-        }
+        private const float SpriteScaling = 2f;
+        protected Sprite EntitySprite = new Sprite {Scale = new Vector2f(SpriteScaling, SpriteScaling)};
 
         public void Draw(RenderTarget target, RenderStates states)
         {
             EntitySprite.Draw(target, states);
         }
+
+        public virtual void Update() { }
+
+        public virtual void Start() { }
     }
 }
