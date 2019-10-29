@@ -2,6 +2,6 @@
 {
     public static class Resources
     {
-        public const string PlayerTexture = @"Assets\Player\herotest.png";
+        public const string PlayerTexture = @"Assets\herotest.png";
     }
 }
