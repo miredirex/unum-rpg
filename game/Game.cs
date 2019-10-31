@@ -9,12 +9,12 @@ namespace unum
     {
         private static readonly RenderWindow Window = GameWindow.Window;
         private const float FixedTimestep = 1f / GameWindow.TargetFps; // 1/60 (60 fps)
-        private float TimeSinceLastUpdate = 0f;
+        private float _timeSinceLastUpdate = 0f;
         
-        private readonly Clock GameClock = new Clock();
-        private readonly View CameraView = new View(new FloatRect(0, 0, Window.Size.X, Window.Size.Y));
+        private readonly Clock _gameClock = new Clock();
+        private readonly View _cameraView = new View(new FloatRect(0, 0, Window.Size.X, Window.Size.Y));
         
-        private readonly World GameWorld = new World()
+        private readonly World _gameWorld = new World()
             .AddObject(new Player());
 
         public Game()
@@ -25,7 +25,7 @@ namespace unum
 
         private void SetupWindow()
         {
-            Window.SetView(CameraView);
+            Window.SetView(_cameraView);
         }
         
         private void GameLoop()
@@ -45,20 +45,20 @@ namespace unum
 
         private void Update()
         {
-            var dt = GameClock.Restart().AsSeconds();
-            TimeSinceLastUpdate += dt;
-            if (TimeSinceLastUpdate > FixedTimestep)
+            var dt = _gameClock.Restart().AsSeconds();
+            _timeSinceLastUpdate += dt;
+            if (_timeSinceLastUpdate > FixedTimestep)
             {
-                TimeSinceLastUpdate -= FixedTimestep;
+                _timeSinceLastUpdate -= FixedTimestep;
                 
-                GameWorld.UpdateObjects(FixedTimestep);
+                _gameWorld.UpdateObjects(FixedTimestep);
             }
         }
 
         private void Render()
         {
             Window.Clear();
-            GameWorld.RenderObjects(Window, RenderStates.Default);
+            _gameWorld.RenderObjects(Window, RenderStates.Default);
             Window.Display();
         }
 
