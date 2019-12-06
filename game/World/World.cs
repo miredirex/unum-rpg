@@ -19,7 +19,7 @@ namespace unum
         {
             foreach (var obj in WorldObjects)
             {
-                obj.Update(deltaTime);
+                obj._Update(deltaTime);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using System;
+using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
@@ -9,7 +10,7 @@ namespace unum
         private const float Velocity = 100f;
         public Player()
         {
-            EntitySprite.Texture = new Texture(Resources.Files.PlayerTexture);
+            Sprite.Texture = new Texture(Resources.Files.PlayerTexture);
         }
 
         public override void Start()
@@ -17,7 +18,7 @@ namespace unum
             
         }
 
-        public override void Update(float deltaTime)
+        protected override void Update(float deltaTime)
         {
             Move(deltaTime);
         }
@@ -40,6 +41,12 @@ namespace unum
             {
                 Position += new Vector2f(Velocity * deltaTime, 0f);   
             }
+        }
+
+        public override void OnMouseClickWithin(Vector2i mousePos)
+        {
+            Console.WriteLine("CLICKED!");
+            Console.WriteLine(mousePos.ToString());
         }
     }
 }
