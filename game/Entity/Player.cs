@@ -8,14 +8,10 @@ namespace unum
     public class Player : GameObject
     {
         private const float Velocity = 100f;
-        public Player()
-        {
-            Sprite.Texture = new Texture(Resources.Files.PlayerTexture);
-        }
 
         public override void Start()
         {
-            
+            Sprite.Texture = new Texture(Resources.Files.PlayerTexture);
         }
 
         protected override void Update(float deltaTime)

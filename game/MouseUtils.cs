@@ -5,6 +5,9 @@ namespace unum
 {
     public static class MouseUtils
     {
+        /// <summary>
+        /// Checks if the mouse position is within rectangle's area
+        /// </summary>
         public static bool IsMousePositionWithin(FloatRect rect)
         {
             var mousePos = Mouse.GetPosition(GameWindow.Window);

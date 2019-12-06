@@ -11,6 +11,11 @@ namespace unum
         public static readonly Cursor CursorDefault = CreateCursorFromSquareImage(Resources.Files.DefaultCursor);
         public static readonly Cursor CursorClicked = CreateCursorFromSquareImage(Resources.Files.ClickedCursor);
 
+        /// <summary>
+        /// Creates and configures SFML Cursor from image file
+        /// </summary>
+        /// <param name="filePath">Path to the image file</param>
+        /// <exception cref="InvalidOperationException">The exception is thrown when the image is not square</exception>
         public static Cursor CreateCursorFromSquareImage(string filePath)
         {    
             var pixels = new Image(filePath).Pixels;
