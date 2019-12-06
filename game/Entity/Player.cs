@@ -9,7 +9,7 @@ namespace unum
         private const float Velocity = 100f;
         public Player()
         {
-            EntitySprite.Texture = new Texture(Resources.PlayerTexture);
+            EntitySprite.Texture = new Texture(Resources.Files.PlayerTexture);
         }
 
         public override void Start()
