@@ -7,7 +7,10 @@ namespace unum
     public static class GameWindow
     {
         private const string GameTitle = "Unum RPG";
-        private static readonly Vector2u WindowSize = new Vector2u(640, 480);
+        private static readonly Vector2u WindowSize = new Vector2u(1280, 720);
+        private static readonly Vector2i CenteredWindowPosition = new Vector2i(
+            (int) VideoMode.DesktopMode.Width / 2 - (int) WindowSize.X / 2,
+            (int) VideoMode.DesktopMode.Height / 2 - (int) WindowSize.Y / 2);
         public const uint TargetFps = 60;
         public static readonly RenderWindow Window = new RenderWindow(VideoMode.DesktopMode, GameTitle);
 
@@ -15,18 +18,25 @@ namespace unum
         {
             SetWindowSettings();
             SetWindowCallbacks();
+            SetupCursor();
         }
         
         private static void SetWindowSettings()
         {
             Window.Size = WindowSize;
-            //window.SetFramerateLimit(TargetFps);
-            //window.SetVerticalSyncEnabled(true);
+            Window.Position = CenteredWindowPosition;
         }
 
         private static void SetWindowCallbacks()
         {
-            Window.Closed += (sender, args) => { Window.Close(); };
+            Window.Closed += delegate { Window.Close(); };
+            Window.MouseButtonPressed += delegate { Window.SetMouseCursor(Cursors.CursorClicked); };
+            Window.MouseButtonReleased += delegate { Window.SetMouseCursor(Cursors.CursorDefault); };
+        }
+
+        private static void SetupCursor()
+        {
+            Window.SetMouseCursor(Cursors.CursorDefault);
         }
     }
 }
