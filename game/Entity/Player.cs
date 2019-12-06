@@ -39,7 +39,7 @@ namespace unum
             }
         }
 
-        public override void OnMouseClickWithin(Vector2i mousePos)
+        protected override void OnMouseClickWithin(Vector2i mousePos)
         {
             Console.WriteLine("CLICKED!");
             Console.WriteLine(mousePos.ToString());

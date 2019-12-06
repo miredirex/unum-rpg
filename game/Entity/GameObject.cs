@@ -4,7 +4,7 @@ using SFML.Window;
 
 namespace unum
 {
-    public class GameObject : Transformable, Drawable, IClickable
+    public class GameObject : Transformable, Drawable
     {
         private const float SpriteScale = 3f;
         protected Sprite Sprite = new Sprite { Scale = new Vector2f(SpriteScale, SpriteScale) };
@@ -46,6 +46,6 @@ namespace unum
         /// Fires every time the mouse is clicked within an object's bounding box
         /// </summary>
         /// <param name="mousePos">Mouse click position</param>
-        public virtual void OnMouseClickWithin(Vector2i mousePos) { }
+        protected virtual void OnMouseClickWithin(Vector2i mousePos) { }
     }
 }
