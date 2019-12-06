@@ -5,7 +5,7 @@ namespace unum
 {
     public class GameObject : Transformable, Drawable
     {
-        private const float SpriteScaling = 2f;
+        private const float SpriteScaling = 3f;
         protected Sprite EntitySprite = new Sprite {Scale = new Vector2f(SpriteScaling, SpriteScaling)};
 
         public void Draw(RenderTarget target, RenderStates states)

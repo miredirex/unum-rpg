@@ -13,14 +13,20 @@ namespace unum
 
         static GameWindow()
         {
-            SetWindowSettings(Window);
+            SetWindowSettings();
+            SetWindowCallbacks();
         }
         
-        private static void SetWindowSettings(RenderWindow window)
+        private static void SetWindowSettings()
         {
-            window.Size = WindowSize;
+            Window.Size = WindowSize;
             //window.SetFramerateLimit(TargetFps);
             //window.SetVerticalSyncEnabled(true);
+        }
+
+        private static void SetWindowCallbacks()
+        {
+            Window.Closed += (sender, args) => { Window.Close(); };
         }
     }
 }

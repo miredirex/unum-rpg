@@ -1,5 +1,4 @@
-﻿using System;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
@@ -9,10 +8,10 @@ namespace unum
     {
         private static readonly RenderWindow Window = GameWindow.Window;
         private const float FixedTimestep = 1f / GameWindow.TargetFps; // 1/60 (60 fps)
-        private float _timeSinceLastUpdate = 0f;
         
         private readonly Clock _gameClock = new Clock();
-        private readonly View _cameraView = new View(new FloatRect(0, 0, Window.Size.X, Window.Size.Y));
+        private float _timeSinceLastUpdate = 0f;
+        private View _cameraView = new View(new FloatRect(0, 0, Window.Size.X, Window.Size.Y));
         
         private readonly World _gameWorld = new World()
             .AddObject(new Player());
@@ -26,6 +25,7 @@ namespace unum
         private void SetupWindow()
         {
             Window.SetView(_cameraView);
+            Window.Resized += WindowOnResizedAdjustView;
         }
         
         private void GameLoop()
@@ -41,6 +41,12 @@ namespace unum
         private void ProcessEvents()
         {
             Window.DispatchEvents();
+        }
+
+        private void WindowOnResizedAdjustView(object sender, SizeEventArgs e)
+        {
+            _cameraView = new View(new FloatRect(0, 0, e.Width, e.Height));
+            Window.SetView(_cameraView);
         }
 
         private void Update()
@@ -60,11 +66,6 @@ namespace unum
             Window.Clear();
             _gameWorld.RenderObjects(Window, RenderStates.Default);
             Window.Display();
-        }
-
-        private void HandleInput(object sender, KeyEventArgs e)
-        {
-            Console.WriteLine(e.Code);
         }
     }
 }
