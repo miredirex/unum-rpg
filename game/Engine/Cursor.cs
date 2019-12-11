@@ -14,7 +14,7 @@ namespace unum.Engine
         /// <param name="filePath">Path to the image file</param>
         /// <exception cref="InvalidOperationException">The exception is thrown when the image is not square</exception>
         public static SFML.Window.Cursor CreateCursorFromSquareImage(string filePath)
-        {    
+        {
             var pixels = new Image(filePath).Pixels;
             var cursorSize = Math.Sqrt(pixels.Length / PngChannelsCount);
             if (cursorSize % 1 != 0)
