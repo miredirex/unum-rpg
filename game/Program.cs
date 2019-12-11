@@ -1,10 +1,13 @@
-﻿namespace unum
+﻿using unum.Engine;
+
+namespace unum
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
+            GameWorld world = new NewWorld();
+            var game = new Game(world);
         }
     }
 }

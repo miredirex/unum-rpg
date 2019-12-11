@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using SFML.Graphics;
 
-namespace unum
+namespace unum.Engine
 {
-    public class World
+    public abstract class GameWorld
     {
         private List<GameObject> WorldObjects { get; } = new List<GameObject>();
 
@@ -11,13 +11,10 @@ namespace unum
         /// Adds object into the world and invokes its Start method
         /// </summary>
         /// <param name="obj">Game object to add into the world</param>
-        /// <returns>Self so you can continue adding more</returns>
-        public World AddObject(GameObject obj)
+        public void AddObject(GameObject obj)
         {
             WorldObjects.Add(obj);
             obj.Start();
-
-            return this;
         }
 
         /// <summary>

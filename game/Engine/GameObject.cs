@@ -1,14 +1,13 @@
 ﻿using SFML.Graphics;
 using SFML.System;
-using SFML.Window;
 
-namespace unum
+namespace unum.Engine
 {
     public class GameObject : Transformable, Drawable
     {
-        private const float SpriteScale = 3f;
-        protected Sprite Sprite = new Sprite { Scale = new Vector2f(SpriteScale, SpriteScale) };
-        protected FloatRect BoundingBox => new FloatRect(Position, Position + (Vector2f)Sprite.Texture.Size * SpriteScale);
+        protected static Vector2f DefaultSpriteScale = new Vector2f(Settings.SpriteScale, Settings.SpriteScale);
+        protected readonly Sprite Sprite = new Sprite { Scale = DefaultSpriteScale };
+        protected FloatRect BoundingBox => new FloatRect(Position, Position + (Vector2f)Sprite.Texture.Size * Settings.SpriteScale);
 
         /// <summary>
         /// Draws this object on screen
@@ -24,9 +23,9 @@ namespace unum
         /// </summary>
         public void _Update(float deltaTime)
         {
-            if (Mouse.IsButtonPressed(Mouse.Button.Left) && MouseUtils.IsMousePositionWithin(this.BoundingBox))
+            if (SFML.Window.Mouse.IsButtonPressed(SFML.Window.Mouse.Button.Left) && Mouse.IsMousePositionWithin(this.BoundingBox))
             {
-                OnMouseClickWithin(Mouse.GetPosition());
+                OnMouseClickWithin(SFML.Window.Mouse.GetPosition());
             }
             Update(deltaTime);
         }
