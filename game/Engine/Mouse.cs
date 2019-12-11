@@ -10,8 +10,7 @@ namespace unum.Engine
         public static bool IsMousePositionWithin(FloatRect rect)
         {
             var mousePos = SFML.Window.Mouse.GetPosition(GameWindow.Window);
-            return (mousePos.X >= rect.Left && mousePos.X <= rect.Width &&
-                    mousePos.Y >= rect.Top && mousePos.Y <= rect.Height);
+            return rect.Contains(mousePos.X, mousePos.Y);
         }
     }
 }
