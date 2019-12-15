@@ -50,6 +50,7 @@ namespace unum.Engine
         {
             GameWindow.Window.Clear();
             CurrentWorld.RenderObjects(GameWindow.Window, RenderStates.Default);
+            GameWindow.UpdateView();
             GameWindow.Window.Display();
         }
 

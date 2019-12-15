@@ -44,5 +44,10 @@ namespace unum.Engine
             var cameraView = new View(new FloatRect(0, 0, e.Width, e.Height));
             Window.SetView(cameraView);
         }
+
+        public static void UpdateView()
+        {
+            Window.SetView(Window.GetView());
+        }
     }
 }

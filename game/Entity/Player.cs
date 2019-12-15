@@ -17,10 +17,11 @@ namespace unum
 
         protected override void Update(float deltaTime)
         {
-            Move(deltaTime);
+            Camera.ZoomSmooth(CenterPosition, 2f, deltaTime);
+            HandleMovement(deltaTime);
         }
 
-        private void Move(float deltaTime)
+        private void HandleMovement(float deltaTime)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.W))
             {

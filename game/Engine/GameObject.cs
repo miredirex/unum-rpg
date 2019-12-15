@@ -1,5 +1,6 @@
 ﻿using SFML.Graphics;
 using SFML.System;
+using SFMLMouse = SFML.Window.Mouse;
 
 namespace unum.Engine
 {
@@ -7,7 +8,12 @@ namespace unum.Engine
     {
         protected static Vector2f DefaultSpriteScale = new Vector2f(Settings.SpriteScale, Settings.SpriteScale);
         protected readonly Sprite Sprite = new Sprite { Scale = DefaultSpriteScale };
-        protected FloatRect BoundingBox => new FloatRect(Position, Position + (Vector2f)Sprite.Texture.Size * Settings.SpriteScale);
+        
+        protected FloatRect BoundingBox 
+            => new FloatRect(Position, (Vector2f)Sprite.Texture.Size * Settings.SpriteScale);
+
+        protected Vector2f CenterPosition 
+            => new Vector2f(Position.X + BoundingBox.Width / 2f, Position.Y + BoundingBox.Height / 2f);
 
         /// <summary>
         /// Draws this object on screen
@@ -23,9 +29,9 @@ namespace unum.Engine
         /// </summary>
         public void _Update(float deltaTime)
         {
-            if (SFML.Window.Mouse.IsButtonPressed(SFML.Window.Mouse.Button.Left) && Mouse.IsMousePositionWithin(this.BoundingBox))
+            if (SFMLMouse.IsButtonPressed(SFMLMouse.Button.Left) && Mouse.IsMousePositionWithin(this.BoundingBox))
             {
-                OnMouseClickWithin(SFML.Window.Mouse.GetPosition());
+                OnMouseClickWithin(SFMLMouse.GetPosition());
             }
             Update(deltaTime);
         }
